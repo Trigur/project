@@ -230,3 +230,13 @@ if (! function_exists('is_mobile')) {
         return false;
     }
 }
+
+if (! function_exists('HTMLToString')) {
+    function HTMLToString($str)
+    {
+        $str = strip_tags($str);
+        $str = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $str);
+        $str = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $str);
+        return $str;
+    }
+}
