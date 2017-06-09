@@ -57,6 +57,14 @@ if (! function_exists('getAlbum')) {
     }
 }
 
+if (! function_exists('getAlbums')) {
+    function getAlbums($categoryId = 0, $sortBy = 'position', $sortOrder = 'desc')
+    {
+        $ci = & get_instance();
+        return $ci->load->module('gallery')->load->model('gallery_m')->get_albums($sortBy, $sortOrder, $categoryId);
+    }
+}
+
 if (! function_exists('truncate')) {
     function truncate($inputText, $charsNum)
     {
