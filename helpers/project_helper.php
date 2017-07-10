@@ -253,6 +253,6 @@ if (! function_exists('isMainPage')) {
     function isMainPage()
     {
         $ci = & get_instance();
-        return $ci->core->core_data['data_type'] !== 'main';
+        return ($ci->core->core_data['data_type'] === 'main' ? true : false);
     }
 }
