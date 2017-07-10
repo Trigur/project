@@ -250,7 +250,7 @@ if (! function_exists('HTMLToString')) {
 }
 
 if (! function_exists('isMainPage')) {
-    function isMainPage($str)
+    function isMainPage()
     {
         $ci = & get_instance();
         return $ci->core->core_data['data_type'] !== 'main';
