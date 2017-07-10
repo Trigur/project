@@ -210,8 +210,8 @@ if (! function_exists('isStorePage')) {
     }
 }
 
-if (! function_exists('is_mobile')) {
-    function is_mobile()
+if (! function_exists('isMobile')) {
+    function isMobile()
     {
         $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
 
@@ -246,5 +246,13 @@ if (! function_exists('HTMLToString')) {
         $str = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $str);
         $str = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $str);
         return $str;
+    }
+}
+
+if (! function_exists('isMainPage')) {
+    function isMainPage($str)
+    {
+        $ci = & get_instance();
+        return $ci->core->core_data['data_type'] !== 'main';
     }
 }
