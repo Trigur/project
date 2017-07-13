@@ -12,6 +12,34 @@ if (! function_exists('ajaxCheck')) {
     }
 }
 
+if (! function_exists('getPage')) {
+    function getPage($pageId)
+    {
+        $ci = &get_instance();
+
+        $language = MY_Controller::getCurrentLanguage();
+
+        $ci->db->limit(1);
+        $ci->db->select('IF(route.parent_url <> \'\', concat(route.parent_url, \'/\', route.url), route.url) as full_url, content.*', FALSE);
+        $ci->db->join('route', 'route.id=content.route_id');
+
+        if ($language['identif'] == $ci->uri->segment(1)) {
+            $ci->db->where('lang_alias', $pageId);
+            $ci->db->where('lang', $language['id']);
+        } else {
+            $ci->db->where('content.id', $pageId);
+        }
+
+        $query = $ci->db->get('content');
+
+        if ($query->num_rows() == 1) {
+            return $query->row_array();
+        }
+
+        return FALSE;
+    }
+}
+
 if (! function_exists('getCategory')) {
     function getCategory($category_id = 0)
     {
