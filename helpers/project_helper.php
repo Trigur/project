@@ -96,6 +96,10 @@ if (! function_exists('getAlbums')) {
 if (! function_exists('truncate')) {
     function truncate($inputText, $charsNum)
     {
+        if (mb_strlen($inputText) <= $charsNum) {
+            return $inputText;
+        }
+        
         $outputText = $inputText . " ";
         $outputText = substr($outputText, 0, $charsNum);
         $outputText = substr($outputText, 0, strrpos($outputText," "));
